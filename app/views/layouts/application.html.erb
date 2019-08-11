@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <% if @current_user %>
+    <%= link_to 'Movies', movies_path %>
+    <%= link_to 'Genres', genres_path %>
+
+    <td><%= link_to 'Logout',  { controller: 'users', action: :destroy, id: @current_user.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+    <% end %>
     <%= yield %>
   </body>
 </html>
