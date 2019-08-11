@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190811211125) do
+ActiveRecord::Schema.define(version: 2019_08_11_211125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "genres", force: :cascade do |t|
-    t.string   "name"
+  create_table "genres", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20190811211125) do
   create_table "genres_movies", id: false, force: :cascade do |t|
     t.integer "movie_id"
     t.integer "genre_id"
-    t.index ["genre_id"], name: "index_genres_movies_on_genre_id", using: :btree
-    t.index ["movie_id"], name: "index_genres_movies_on_movie_id", using: :btree
+    t.index ["genre_id"], name: "index_genres_movies_on_genre_id"
+    t.index ["movie_id"], name: "index_genres_movies_on_movie_id"
   end
 
-  create_table "movies", force: :cascade do |t|
-    t.string   "name"
-    t.string   "year"
-    t.string   "director"
+  create_table "movies", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "year"
+    t.string "director"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,14 +39,14 @@ ActiveRecord::Schema.define(version: 20190811211125) do
   create_table "movies_users", id: false, force: :cascade do |t|
     t.integer "movie_id"
     t.integer "user_id"
-    t.index ["movie_id"], name: "index_movies_users_on_movie_id", using: :btree
-    t.index ["user_id"], name: "index_movies_users_on_user_id", using: :btree
+    t.index ["movie_id"], name: "index_movies_users_on_movie_id"
+    t.index ["user_id"], name: "index_movies_users_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "password"
-    t.string   "role"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "username"
+    t.string "password"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
