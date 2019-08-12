@@ -5,6 +5,12 @@ module Api
     # GET /movies.json
     def index
       @movies = Movie.all
+      if params[:favorite]
+        @movies = @movies.select do |movie|
+          movie.users.include? @current_user
+        end
+      end
+
       respond_to do |format|
         format.json { render 'movies/index', status: :ok }
       end
@@ -13,6 +19,9 @@ module Api
     # GET /movies/1
     # GET /movies/1.json
     def show
+      respond_to do |format|
+        format.json { render 'movies/show', status: :ok }
+      end
     end
 
     # GET /movies/new
