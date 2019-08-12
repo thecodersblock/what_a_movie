@@ -7,7 +7,11 @@ class Movie < ApplicationRecord
   has_and_belongs_to_many :users
   has_one_attached :thumbnail
 
-  validate :check_image_resolution
+  validate :check_image_resolution, :atleast_one_genre
+
+  def atleast_one_genre
+    genres.count > 0
+  end
 
   def check_image_resolution
     if thumbnail.attachment

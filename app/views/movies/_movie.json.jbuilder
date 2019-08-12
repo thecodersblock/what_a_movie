@@ -1,2 +1,10 @@
-json.extract! movie, :id, :name, :year, :created_at, :updated_at
-json.url movie_url(movie, format: :json)
+json.movie do
+  json.id :id
+  json.name :name
+  json.year :year
+  json.director :director
+  json.main_star :main_star
+  json.description :description
+  json.genres movie.genres.pluck :name
+  json.favorite_usernames movie.users.pluck :username
+end

@@ -1,3 +1,5 @@
+require 'jwt'
+
 module Api
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -23,13 +25,13 @@ module Api
     def edit
     end
   
-    # POST /users
     # POST /users.json
     def create
       @user = User.create(username: user_params[:username], role: 'user')  
       respond_to do |format|
         if @user.save
-          session[:current_user_id] = @user.id
+          payload = { current_user_id: @user.id }
+          @token = JWT.encode payload, nil, 'none'
           format.json { render 'users/show', status: :success }
         else
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -37,41 +39,24 @@ module Api
       end
     end
   
-    # POST /users/login
     # POST /users/login.json
     def login
       @user = User.find_by(username: user_params[:username], role: 'user')
       respond_to do |format|
         if @user
-          session[:current_user_id] = @user.id
-          format.json { render 'users/show', status: :success }
+          payload = { current_user_id: @user.id }
+          @token = JWT.encode payload, nil, 'none'
+          format.json { render 'users/show', status: :ok }
         else
           format.json { render json: { error: 'User does not exist' }, status: :unprocessable_entity }
         end
       end
     end
   
-    # PATCH/PUT /users/1
-    # PATCH/PUT /users/1.json
-    def update
+    # POST /users/1/logout.json
+    def logout
       respond_to do |format|
-        if @user.update(user_params)
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-      end
-    end
-  
-    # DELETE /users/1
-    # DELETE /users/1.json
-    def destroy
-      @user.destroy
-      respond_to do |format|
-        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-        format.json { head :no_content }
+        format.json { render json: { message: 'User successfully logged out' } }
       end
     end
   

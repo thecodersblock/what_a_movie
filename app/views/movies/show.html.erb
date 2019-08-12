@@ -16,6 +16,21 @@
 </p>
 
 <p>
+  <strong>Director:</strong>
+  <%= @movie.director %>
+</p>
+
+<p>
+  <strong>Main Star:</strong>
+  <%= @movie.main_star %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description %>
+</p>
+
+<p>
   <strong>Genres:</strong>
   <%= @movie.genres.pluck :name %>
 </p>

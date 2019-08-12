@@ -6,16 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(username: "raj", password: 'raj', role: "admin")
+User.create(username: "admin", password: 'password', role: "admin")
 
 Genre.create(name: "Horror")
 Genre.create(name: "Drama")
-Genre.create(name: "Okay")
+Genre.create(name: "Comedy")
 
-m = Movie.create(name: "Whatever", year: "1234", genres: Genre.all)
-Movie.create(name: "Inception", year: "1234", genres: [Genre.first])
-Movie.create(name: "Blah", year: "1234")
-
+m = Movie.create(name: "Batman", year: "2001", genres: Genre.all, main_star: 'Christian Bale')
+Movie.create(name: "Inception", year: "2010", genres: [Genre.first], director: "C Nolan")
+Movie.create(name: "D&D", year: "1990", genres: [Genre.first])
 
 User.create(username: "Riya", role: "user", movies: [Movie.first, Movie.last])
 User.create(username: "Sumit", role: "user", movies: [Movie.first])

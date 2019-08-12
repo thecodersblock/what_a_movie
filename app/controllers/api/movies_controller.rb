@@ -1,13 +1,12 @@
 module Api
   class MoviesController < ApplicationController
-    before_action :set_movie, only: [:show, :edit, :update, :destroy]
+    before_action :set_movie, only: [:show, :edit, :favorite, :unfavorite]
 
-    # GET /movies
     # GET /movies.json
     def index
       @movies = Movie.all
       respond_to do |format|
-        format.json { render 'movies/index', status: :success }
+        format.json { render 'movies/index', status: :ok }
       end
     end
 
@@ -41,6 +40,25 @@ module Api
       end
     end
 
+    def favorite
+      unless @movie.users.include? @current_user
+        @movie.users << @current_user
+        @movie.save!
+      end
+      respond_to do |format|
+        format.json { render 'movies/show', status: :ok }
+      end
+    end
+
+    def unfavorite
+      if @movie.users.include? @current_user
+        @movie.users.delete(@current_user)
+      end
+      respond_to do |format|
+        format.json { render 'movies/show', status: :ok }
+      end
+    end
+
     # PATCH/PUT /movies/1
     # PATCH/PUT /movies/1.json
     def update
@@ -52,16 +70,6 @@ module Api
           format.html { render :edit }
           format.json { render json: @movie.errors, status: :unprocessable_entity }
         end
-      end
-    end
-
-    # DELETE /movies/1
-    # DELETE /movies/1.json
-    def destroy
-      @movie.destroy
-      respond_to do |format|
-        format.html { redirect_to movies_url, notice: 'Movie was successfully destroyed.' }
-        format.json { head :no_content }
       end
     end
 

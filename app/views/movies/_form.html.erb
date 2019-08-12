@@ -22,6 +22,21 @@
   </div>
 
   <div class="field">
+    <%= f.label "Director (Optional)" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Main Star (Optional)" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Description (Optional)" %>
+    <%= text_area(:movie, :description, size: "100x10") %>
+  </div>
+
+  <div class="field">
     <%= f.label :thumbnail %>
     <image src="<%= url_for(@movie.thumbnail) if @movie.thumbnail.attached? %>">
     <br>

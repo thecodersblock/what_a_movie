@@ -12,6 +12,7 @@ gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'bootsnap', require: false
 gem "mini_magick"
+gem 'jwt'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
