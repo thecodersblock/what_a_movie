@@ -1,10 +1,10 @@
 json.movie do
-  json.id :id
-  json.name :name
-  json.year :year
-  json.director :director
-  json.main_star :main_star
-  json.description :description
+  json.id movie.id
+  json.name movie.name
+  json.year movie.year
+  json.director movie.director
+  json.main_star movie.main_star
+  json.description movie.description
   json.genres movie.genres.pluck :name
   json.favorite_usernames_count movie.users.length
   json.favorite_usernames movie.users.pluck :username
