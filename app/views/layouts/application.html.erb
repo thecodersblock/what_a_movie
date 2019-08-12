@@ -13,7 +13,7 @@
     <%= link_to 'Movies', movies_path %>
     <%= link_to 'Genres', genres_path %>
 
-    <td><%= link_to 'Logout',  { controller: 'users', action: :destroy, id: @current_user.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Logout',  { controller: 'users', action: :destroy, id: @current_user.id }, method: :delete, data: { confirm: 'Are you sure?' }, style: "float: right" %></td>
 
     <% end %>
     <%= yield %>

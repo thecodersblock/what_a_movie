@@ -10,7 +10,7 @@ class Movie < ApplicationRecord
   validate :check_image_resolution, :atleast_one_genre
 
   def atleast_one_genre
-    genres.count > 0
+    errors.add(:genres, "Need at least 1 genre") unless genres.length > 0
   end
 
   def check_image_resolution

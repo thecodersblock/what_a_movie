@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.find_by(username: user_params[:username], password: user_params[:password], role: 'admin')
-
     respond_to do |format|
       if @user
         session[:current_user_id] = @user.id
