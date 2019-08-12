@@ -7,4 +7,5 @@ json.movie do
   json.description :description
   json.genres movie.genres.pluck :name
   json.favorite_usernames movie.users.pluck :username
+  json.thumbnail request.host_with_port+url_for(movie.thumbnail) if movie.thumbnail.attached?
 end
