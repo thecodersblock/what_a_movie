@@ -1,7 +1,9 @@
 require "mini_magick"
 
 class Movie < ApplicationRecord
-  validates :name, :year, presence: true
+  validates :name, :year, presence: true, length: { maximum: 80 }
+  validates :director, :main_star, length: { maximum: 60 }
+  validates :description, length: { maximum: 400 }
 
   has_and_belongs_to_many :genres
   has_and_belongs_to_many :users
