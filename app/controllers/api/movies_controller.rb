@@ -11,6 +11,10 @@ module Api
         end
       end
 
+      @favorite_movie_ids = @movies.select do |movie|
+        movie.users.include? @current_user
+      end.pluck :id
+
       respond_to do |format|
         format.json { render 'movies/index', status: :ok }
       end
