@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2019_08_11_232322) do
     t.string "name"
     t.string "year"
     t.string "director"
+    t.string "main_star"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
