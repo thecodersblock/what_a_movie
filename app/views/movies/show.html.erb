@@ -10,6 +10,10 @@
   <%= @movie.year %>
 </p>
 
+<p>
+  <strong>Thumbnail:</strong>
+  <image src="<%= url_for(@movie.thumbnail) if @movie.thumbnail.attached? %>">
+</p>
 
 <p>
   <strong>Genres:</strong>

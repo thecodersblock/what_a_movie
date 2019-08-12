@@ -21,13 +21,18 @@
     <%= f.select :year, (1900..Time.now.year).to_a, :include_blank => {:year => "Select year"} %>
   </div>
 
+  <div class="field">
+    <%= f.label :thumbnail %>
+    <image src="<%= url_for(@movie.thumbnail) if @movie.thumbnail.attached? %>">
+    <br>
+    <%= f.file_field :thumbnail %>
+  </div>
 
   <div class="field">
     <%= f.label :genres %>
     <div style="margin-left: 10px">
       <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) %>
     </div>
-
   </div>
 
   <div class="actions">
