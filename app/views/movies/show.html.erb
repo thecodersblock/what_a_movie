@@ -36,9 +36,11 @@
 </p>
 
 <p>
-  <strong>Users Favorited:</strong>
+  <strong>Users Favorited Count:</strong>
+  <%= @movie.users.length %>
   <%= @movie.users.pluck :username %>
 </p>
+
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
