@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get '/users/login', to: 'users#new'
+  delete '/users/admin_logout', to: 'users#admin_logout'
 
   resources :genres
   resources :users

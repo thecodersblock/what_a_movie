@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :destroy]
   skip_before_action :authenticate_request, only: [:create, :login, :new]
 
   # GET /users/new
   def new
     @user = User.new(role: 'admin')
+  end
+
+  def index
+    @users = User.where({ role: 'user' })
+  end
+
+  def show
   end
 
   # GET /users/1/edit
@@ -26,10 +33,18 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def admin_logout
     @user = User.new(role: 'admin')
     respond_to do |format|
       format.html { redirect_to new_user_url, notice: 'Admin successfully logged out.' }
+    end
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
