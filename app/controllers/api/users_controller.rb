@@ -32,7 +32,7 @@ module Api
         if @user.save
           payload = { current_user_id: @user.id }
           @token = JWT.encode payload, nil, 'none'
-          format.json { render 'users/show', status: :success }
+          format.json { render 'users/show', status: :ok }
         else
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
