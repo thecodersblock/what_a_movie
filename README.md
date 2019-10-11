@@ -2,6 +2,8 @@
 
 ## API Endpoints
 
+### Postman Doc: https://documenter.getpostman.com/view/4790043/SVYwJFnZ?version=latest
+
 - ##### Login User
 URL: 
 `POST /user`
